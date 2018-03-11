@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script type="text/javascript" src="data.json"></script>
+	<link href="css/bootstrap.min.css" />
+	<link href="css/demo.css" />
+</head>
+<body>
+	<form name="x">
+		<input type="text" class="form-control" placeholder="请输入车牌号" name="a" id="searchText">
+		<div class="occ1">
+			<button type="button" class=" btn btn-primary" value="搜索" name="btn" id="searchBtn" onclick="search(this.form.a.value)">车牌搜索</button>
+		</div>
+	</form>
+	<a  id="pid"></a>
+	<script>
+		function search(k) {
+			if (k == "") return;
+			var arr = [];
+			var patt = new RegExp(k);
+			for (var i = 0; i < s.rows.length; i++) {
+				if (patt.test(s.rows[i].name) ) {
+					arr.push(i);
+				}
+			}
+			if (arr.length) {
+				var str = "";
+				for (var i = 0; i < arr.length; i++) {
+					str += "车牌: " + s.rows[arr[i]].name + ", 会员权限:" + s.rows[arr[i]].idn + ",联系人:" + s.rows[arr[i]].cname + ",电话:" + s.rows[arr[i]].call + ",办卡日期:" + s.rows[arr[i]].cdate + ",期限时间：" + s.rows[arr[i]].lastDate + ",备注:" + s.rows[arr[i]].info + "\n";
+				}
+					//插入表格
+				document.getElementById('pid').innerHTML = str;
+			} else {
+				alert("no find.");
+			}
+		}
+	</script>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
